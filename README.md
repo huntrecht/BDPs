@@ -9,9 +9,10 @@ Brokers is the leading liquidity brokerage platform. We help broker financial in
 #### Blockchain
 #### SDK Specification
 #### Brokers Fees
-#### KYC Verification
+#### [KYC Verification](https://github.com/huntrecht/proposals/blob/master/KYCVerification.md)
 #### Lending Contract
-#### Term Loan Contract
+#### [Term Loan
+Contract](https://github.com/huntrecht/proposals/blob/master/TermLoanContract.md)
 #### Release Process
 #### Quality Assurance: Tests and Strategy
 #### Product Roadmap
