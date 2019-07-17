@@ -1,3 +1,13 @@
+---
+lip: 003
+title: Credit Specification
+author: Kayode Odeyemi
+discussions-to: https://github.com/huntrecht/LIPs/issues/3
+status: Draft
+type: Standards Track
+category: Interface
+created: 2018-09-04
+---
 # TermLoanContract
 
 ## Abstract
@@ -27,57 +37,10 @@ Our financial institutions are not transparent enough when it comes to credit fi
 - The margin call (a portion of the loan value) shall be kept in a fund should in case the borrower defaults.
 
 ### Specification
-```
-package smartcontracts;
 
-/**
- * Available only to institutional investors. Banks.
- */
-public class TermLoan {
-
-	/**
-	 * Validate successfully peering
-	 */
-	public void verify() {
-		// TODO - implement TermLoan.verify
-		throw new UnsupportedOperationException();
-	}
-
-	public void computeInterestRate() {
-		// TODO - implement TermLoan.computeInterestRate
-		throw new UnsupportedOperationException();
-	}
-
-	public void setRepaymentDuration() {
-		// TODO - implement TermLoan.setRepaymentDuration
-		throw new UnsupportedOperationException();
-	}
-
-	public void processRepayment() {
-		// TODO - implement TermLoan.processRepayment
-		throw new UnsupportedOperationException();
-	}
-
-	public void checkPaymentDate() {
-		// TODO - implement TermLoan.checkPaymentDate
-		throw new UnsupportedOperationException();
-	}
-
-	public void isValid() {
-		// TODO - implement TermLoan.isValid
-		throw new UnsupportedOperationException();
-	}
-
-	public void computeRepayments() {
-		// TODO - implement TermLoan.computeRepayments
-		throw new UnsupportedOperationException();
-	}
-}
-```
 The following specification is based on Protobuf 3
 
 ```
-
 message CreditProfile {
     // The listed amount of the loan applied for by the borrower. If at some point in time, the credit department reduces the loan amount, then it will be reflected in this value.
     int32 loanAmt = 1; 
@@ -263,5 +226,49 @@ message CreditProfile {
     
     // num of credit inquiries in past 12m
     int32 inq_last_12m = 66; 
-}
-    ```
+}```
+
+#### Methods
+
+orderTermLoan
+
+`rpc orderTermLoan(CreditProfile) returns (CreditProfile) {}`
+
+loadCreditProfile
+
+Returns `CreditProfile` object
+
+`rpc loadCreditProfile(CreditProfile) returns (CreditProfile) {}`
+
+
+creditScore
+
+Returns `CreditProfile` object
+
+`rpc creditScore(CreditProfile) returns (CreditProfile) {}`
+
+
+creditVerify
+
+Returns `CreditProfile` object
+
+`rpc creditVerify(Empty) returns (Empty) {}`
+
+computeInterestRate
+
+Returns 
+
+`rpc computeInterestRate(CreditProfile) returns () {}`
+
+computeCreditGrade
+
+Returns 
+
+`rpc computeCreditGrade(CreditProfile) returns () {}`
+
+## Test Cases
+Brokers provides the [brokers-specter] tool for checking compatibility with the Brokers specification.
+
+## Copyright
+Copyright and related rights waived via
+[CC0](https://creativecommons.org/publicdomain/zero/1.0/).

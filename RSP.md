@@ -1,3 +1,13 @@
+---
+lip: 001
+title: Resilient Service Protocol Specification
+author: Kayode Odeyemi
+discussions-to: https://github.com/huntrecht/LIPs/issues/1
+status: Draft
+type: Standards Track
+category: Interface
+created: 2018-09-04
+---
 # RSP (Resilient Service Protocol)
 
 ## Abstract

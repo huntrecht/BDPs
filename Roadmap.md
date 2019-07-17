@@ -1,4 +1,4 @@
-# Likid Roadmap
+# Brokers Roadmap
 
 ### July - KYC
 - KYC Contract Implementation
@@ -32,6 +32,6 @@
 - Deterministic Exchange rate
 - Settlement
 
-### Likid for Trade
+### Brokers for Trade
 - Buyer, Seller, Bank Network
 

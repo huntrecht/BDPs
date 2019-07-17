@@ -1,3 +1,13 @@
+---
+lip: 002
+title: KYC Specification
+author: Kayode Odeyemi
+discussions-to: https://github.com/huntrecht/LIPs/issues/2
+status: Draft
+type: Standards Track
+category: Interface
+created: 2018-09-04
+---
 # KYC Verification
 
 ## Abstract
@@ -12,18 +22,31 @@ quality KYC data.
 
 ### Specification
 The following Specification is based on Protobuf 3
-
-Complete proto
 ```
 message Kyc {
-    User user = 1;
-    string participantType = 2;
-    string address = 3;
-    bool verified = 4;
-    string profileImage = 5;
-    string identityId = 6;
-    string registeredIdBook = 7;
-    string fullnames = 8;
-    string country = 9;
+    string userId = 1;
+    optional string bvn = 2; // only required if country is NG
+    string participantType = 3;
+    string address = 4;
+    bool verified = 5;
+    string profileImage = 6;
+    string identityId = 7;
+    string registeredIdBook = 8;
+    string fullnames = 9;
+    string country = 10;
     }
-```
+    ```
+#### Methods
+
+create
+
+Returns `Profile` object
+
+`rpc kycVerification(KycRequestParams) returns (Profile) {}`
+
+## Test Cases
+Brokers provides the [brokers-specter] tool for checking compatibility with the Brokers specification.
+
+## Copyright
+Copyright and related rights waived via
+[CC0](https://creativecommons.org/publicdomain/zero/1.0/).
