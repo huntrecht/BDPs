@@ -226,7 +226,8 @@ message CreditProfile {
     
     // num of credit inquiries in past 12m
     int32 inq_last_12m = 66; 
-}```
+}
+```
 
 #### Methods
 
