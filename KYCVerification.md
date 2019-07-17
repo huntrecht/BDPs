@@ -35,7 +35,7 @@ message Kyc {
     string fullnames = 9;
     string country = 10;
     }
-    ```
+```
 #### Methods
 
 create
