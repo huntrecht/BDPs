@@ -1,0 +1,8 @@
+---
+layout: page
+title: Core
+---
+
+{% assign lips=site.pages|where:"type","Standards Track"|where:"category","Core" %}
+{% include liptable.html lips=lips %}
+

@@ -5,7 +5,7 @@ author: Kayode Odeyemi
 discussions-to: https://github.com/huntrecht/LIPs/issues/1
 status: Draft
 type: Standards Track
-category: Interface
+category: Core
 created: 2018-09-04
 ---
 # RSP (Resilient Service Protocol)
