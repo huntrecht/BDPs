@@ -85,7 +85,7 @@ message TransferResponse {
 
 #### Methods
 
-`from` - decode the source of funds
+`transferFrom` - decode the source of funds
 
 Returns `SourceDetails` object
 
