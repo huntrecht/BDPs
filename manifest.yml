@@ -1,0 +1,9 @@
+---
+applications:
+- name: specs
+  instances: 1
+  memory: 64M
+  routes:
+  - route: likid.huntrecht.com/specs
+  buildpacks:
+    - staticfile_buildpack

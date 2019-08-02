@@ -35,7 +35,7 @@ permalink: /:slug
 defaults:
   -
     scope: 
-      path: "LIPS"
+      path: "LIPs"
     values:
       layout: "lip"
 
