@@ -32,7 +32,7 @@ Send money. Local and international
 
 The following specification is based on Protobuf 3
 
-```
+``` js
 message Transfer {
     // The recipient. 
     required string to = 1;
@@ -83,33 +83,43 @@ message TransferResponse {
 }
 ```
 
-#### Methods
+### Methods
 
-`transferFrom` - decode the source of funds
+#### transferFrom 
+
+Decode the source of funds
 
 Returns `SourceDetails` object
 
 `rpc transferFrom(SourceAccount) returns (SourceAccount) {}`
 
-`transferTo` - Get the recipient
+#### transferTo 
+
+Get the recipient
 
 Returns `BankAccount` object
 
 `rpc transferTo(BankAccount) returns (BankAccount) {}`
 
-`transfer` - Perform a transfer
+#### transfer 
+
+Perform a transfer
 
 Returns `TransferResponse` object
 
 `rpc transfer(Transfer) returns (TransferResponse) {}`
 
-`getPaymentDetails` - Verify balance
+#### verifyBalance
 
-Returns `Profile` object
+Verify balance
 
-`rpc getPaymentDetails(CreditProfile) returns (Profile) {}`
+Returns `BankAccount` object
 
-`list` - List own transfers
+`rpc verifyBalance(BankAccount) returns (BankAccount) {}`
+
+#### list 
+
+List own transfers
 
 Returns a stream of `Transfer` object
 
