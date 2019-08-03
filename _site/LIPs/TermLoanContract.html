@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Credit Specification | Brokers Design Proposals</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="Credit Specification" />
+<meta name="author" content="Kayode Odeyemi" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
+<meta property="og:description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
+<link rel="canonical" href="http://localhost:4000/LIPs/TermLoanContract.html" />
+<meta property="og:url" content="http://localhost:4000/LIPs/TermLoanContract.html" />
+<meta property="og:site_name" content="Brokers Design Proposals" />
+<script type="application/ld+json">
+{"description":"Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards","@type":"WebPage","url":"http://localhost:4000/LIPs/TermLoanContract.html","headline":"Credit Specification","author":{"@type":"Person","name":"Kayode Odeyemi"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Brokers Design Proposals" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Brokers Design Proposals</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/all.html">All</a><a class="page-link" href="/core.html">Core</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+  <h1 class="page-heading">
+    LIP 3: Credit Specification
+    <a href="/blob/master/LIPs/TermLoanContract.md"><svg role="img" aria-label="Source" xmlns="https://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><title>Source</title><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg></a>
+  </h1>
+  <table>
+    <tr><th>Author</th><td>Kayode Odeyemi</td></tr>
+    
+      <tr><th>Discussions-To</th><td><a href="https://github.com/huntrecht/LIPs/issues/3">https://github.com/huntrecht/LIPs/issues/3</a></td></tr>
+    
+    <tr><th>Status</th><td>Draft
+    
+    </td></tr>
+    <tr><th>Type</th><td>Standards Track</td></tr>
+    
+      <tr><th>Category</th><td>Interface</td></tr>
+    
+    <tr><th>Created</th><td>2018-09-04</td></tr>
+    
+    
+    
+    
+  </table>
+
+  <h1 id="termloancontract">TermLoanContract</h1>
+
+<h2 id="abstract">Abstract</h2>
+<p>This proposal is an implementation of Term Loan on a Blockchain.</p>
+
+<h3 id="motivation">Motivation</h3>
+<p>Our financial institutions are not transparent enough when it comes to credit financing. We believe there are genuine use case for fair credit financing of individual needs and small businesses.</p>
+
+<h3 id="requirements">Requirements</h3>
+<ul>
+  <li>A credit score card. Should be provided by existing Credit Bureau. This is a
+  minimum requirement for loan approval</li>
+  <li><a href="https://likid.huntrecht.com/apidocs/#creditrequest">A basic credit request</a></li>
+  <li>Computation of Credit worthiness a.k.a Credit Grade + Computed interest rate</li>
+  <li>Issue loan offer</li>
+</ul>
+
+<h3 id="verification-process">Verification Process</h3>
+<ul>
+  <li>An accepted loan offer by the loanee is made available to investors to fund.
+  Investors can decide from here whether to verify borrower or not</li>
+  <li>Annual income is verified</li>
+  <li>Credit request is funded</li>
+  <li>Credit request is removed from platform if rejected</li>
+</ul>
+
+<h3 id="use-cases--scenarios">Use Cases / Scenarios</h3>
+<ul>
+  <li>An existing MFB wants to increase demand of its loans</li>
+  <li>Push potential customer credit profile to financial institutions</li>
+  <li>If the loan provider request for a ask price(margin call), A borrower must supply 15% of the ask price.</li>
+  <li>The margin call (a portion of the loan value) shall be kept in a fund should in case the borrower defaults.</li>
+</ul>
+
+<h3 id="specification">Specification</h3>
+
+<p>The following specification is based on Protobuf 3</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>message CreditProfile {
+    // The listed amount of the loan applied for by the borrower. If at some point in time, the credit department reduces the loan amount, then it will be reflected in this value.
+    int32 loanAmt = 1; 
+    
+    // The total amount committed to that loan at that point in time
+    int32 fundedAmt = 2; 
+    
+    // The total amount committed by investors for that loan at that point in time 
+    int32 fundAmtInv = 3; 
+    
+    // The interest rate on the loan
+    double intRate = 4; 
+    
+    // Paid instalment amount
+    double instalment = 5; 
+    
+    // credit grade. Could be called risk rating.
+    string grade = 6; 
+    
+    string subGrade = 7;
+    
+    bool homeOwnership = 8;
+    
+    double annualIncome = 9;
+    
+    // income source verification
+    bool verificationStatus = 10; 
+    
+    int32 issuedDate = 11;
+    
+    // fully paid, charged off
+    bool loanStatus = 12; 
+    
+    string paymentPlan = 13;
+    
+    string desc = 14;
+    
+    // loan purpose
+    string purpose = 15; 
+    
+    string profile = 16;
+    
+    int32 dti = 17;
+    
+    // Delinquent/overdue activities within 2 years
+    string delinq = 18;
+    
+    // How many months since overdue/delinquent date
+    string mthsSinceLastDelinq = 19; 
+    
+    // The first ever loan you got.
+    string earliestCrLine = 20; 
+    
+    // Have you requested for loan in the last 6 months excluding auto and mortgage enquiries
+    
+    bool inqLast6mths = 21; 
+    
+    string mthsSinceLastRecord = 22;
+    
+    // Revolving balance
+    double revBal = 23; 
+    
+    // The amt of credit the boroower is using relative to all available revolving credit (revolving balance)
+    
+    double revUtil = 24; 
+    
+    // Num of open credit lines in the borrowers profile. That is, 
+    double openAcc = 25; 
+    
+    // number of derogatroy public record
+    string pubRec = 26; 
+    
+    // Total number of credit lines in the borrowers profile
+    string totalAcc = 27; 
+    
+    // num of years in employment
+    string empLength = 28; 
+    
+    // remaining outstanding principal for total amt funded
+    string outPrncp = 29; 
+    
+    // remaining outstanding principal for portion of total amt funded by investors
+    string outPrncpInv = 30; 
+    
+    // total payment received to date for total amt funded
+    double totalPymnt = 31; 
+    
+    // total payment received received to date for portion of total amt funded by investors
+    double totalPymntInv = 32; 
+    
+    // principal received till date
+    double totalRecPrncp = 33; 
+    
+    // interest received to date
+    double totalRecInt = 34; 
+    
+    // late fee received till date
+    double totalRecLateFee = 35; 
+    
+    // post-charge off gross recovery. Charges on third parties for recoveries. inv receive a pro-rata share of the recovery amt less any fees.
+    double recoveries = 36; 
+    
+    // post-charge off collection fee
+    double collectionRecoveryFee = 37; 
+    
+    int32 lastPymntDate = 38; 
+    
+    double lastPymntAmt = 39;
+    
+    int32 nextPymntDate = 40;
+    
+    // most recent month LC, MFBs check your credit standing
+    int32 lastCreditPullDate = 41; 
+    
+    // num of collections in 12 mths that's not for medicals
+    string collections12MthsExMed = 42; 
+    
+    // mths since most recent worst rating
+    string mthsSinceLastMajorDerog = 43; 
+    
+    string policyCode = 44; //
+    
+    string applicationType = 45;
+    
+    // co-borrowers annual income
+    double annualIncJoint = 46; 
+    
+    // ratio calculated using co-borrowers total mthly payment on the total debt obligation excluding mortgages on the provided loan
+    double dtiJoint = 47; 
+    
+    // joint income verification
+    string verificationStatusJoint = 48; 
+    
+    // num of acc on which borrower is delinquent. This comes from the credit bureau
+    string accNowDelinq = 49; 
+    
+    // total collection amount ever owed by the borrower
+    double totCollAmt = 50; 
+    
+    double totCurBal = 51; // 
+    
+    // num of open trades (i.e revolving acc, charge acc, instalment, collection acc)
+    int32 open_acc_6m = 52; 
+    
+    // num of instalment acc opened in 6 mths
+    string open_il_6m = 53; 
+    
+    // num of instalment acc opened in 12m
+    string open_il_12m = 54; 
+    
+    // num of instalment acc opened in 24m
+    string open_il_24m = 55; 
+    
+    // mths since recent instalment acc opened
+    string mths_since_rcnt_il = 56; 
+    
+    // total bal on instal acc
+    int32 total_bal_il = 57; 
+    
+    // ratio of total cur bal to high credit over credit limit on all instalment account
+    double il_util = 58; 
+    
+    // num of revolving trade opened in last 12 mths
+    int32 open_rv_12m = 59; 
+    
+    // num of revolving trade opened in last 24 mths
+    int32 open_rv_24m = 60; 
+    
+    // max bal owed on all revolving account
+    double max_bal_bc = 61; 
+    
+    // bal to credit limit on all trades
+    double all_util = 62; 
+    
+    // total revolving high credit or credit limit
+    double total_rev_hi_lim = 63; 
+    
+    // number of personal finance inquiries
+    int32 inq_fi = 64; 
+    
+    // number of finance trade
+    int32 total_cu_tl = 65; 
+    
+    // num of credit inquiries in past 12m
+    int32 inq_last_12m = 66; 
+}
+</code></pre></div></div>
+
+<h4 id="methods">Methods</h4>
+
+<p>orderTermLoan</p>
+
+<p><code class="highlighter-rouge">rpc orderTermLoan(CreditProfile) returns (CreditProfile) {}</code></p>
+
+<p>loadCreditProfile</p>
+
+<p>Returns <code class="highlighter-rouge">CreditProfile</code> object</p>
+
+<p><code class="highlighter-rouge">rpc loadCreditProfile(CreditProfile) returns (CreditProfile) {}</code></p>
+
+<p>creditScore</p>
+
+<p>Returns <code class="highlighter-rouge">CreditProfile</code> object</p>
+
+<p><code class="highlighter-rouge">rpc creditScore(CreditProfile) returns (CreditProfile) {}</code></p>
+
+<p>creditVerify</p>
+
+<p>Returns <code class="highlighter-rouge">CreditProfile</code> object</p>
+
+<p><code class="highlighter-rouge">rpc creditVerify(Empty) returns (Empty) {}</code></p>
+
+<p>computeInterestRate</p>
+
+<p>Returns</p>
+
+<p><code class="highlighter-rouge">rpc computeInterestRate(CreditProfile) returns () {}</code></p>
+
+<p>computeCreditGrade</p>
+
+<p>Returns</p>
+
+<p><code class="highlighter-rouge">rpc computeCreditGrade(CreditProfile) returns () {}</code></p>
+
+<h2 id="test-cases">Test Cases</h2>
+<p>Brokers provides the [brokers-specter] tool for checking compatibility with the Brokers specification.</p>
+
+<h2 id="copyright">Copyright</h2>
+<p>Copyright and related rights waived via
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+
+
+</div>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Brokers Design Proposals</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Brokers Design Proposals</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/huntrecht"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">huntrecht</span></a></li><li><a href="https://www.twitter.com/huntrecht"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">huntrecht</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

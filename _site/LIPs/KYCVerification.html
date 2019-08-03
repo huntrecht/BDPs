@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>KYC Specification | Brokers Design Proposals</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="KYC Specification" />
+<meta name="author" content="Kayode Odeyemi" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
+<meta property="og:description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
+<link rel="canonical" href="http://localhost:4000/LIPs/KYCVerification.html" />
+<meta property="og:url" content="http://localhost:4000/LIPs/KYCVerification.html" />
+<meta property="og:site_name" content="Brokers Design Proposals" />
+<script type="application/ld+json">
+{"description":"Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards","@type":"WebPage","url":"http://localhost:4000/LIPs/KYCVerification.html","headline":"KYC Specification","author":{"@type":"Person","name":"Kayode Odeyemi"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Brokers Design Proposals" /></head>
+<body><header class="site-header" role="banner">
+
+  <div class="wrapper"><a class="site-title" rel="author" href="/">Brokers Design Proposals</a><nav class="site-nav">
+        <input type="checkbox" id="nav-trigger" class="nav-trigger" />
+        <label for="nav-trigger">
+          <span class="menu-icon">
+            <svg viewBox="0 0 18 15" width="18px" height="15px">
+              <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"/>
+            </svg>
+          </span>
+        </label>
+
+        <div class="trigger"><a class="page-link" href="/all.html">All</a><a class="page-link" href="/core.html">Core</a></div>
+      </nav></div>
+</header>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="home">
+  <h1 class="page-heading">
+    LIP 2: KYC Specification
+    <a href="/blob/master/LIPs/KYCVerification.md"><svg role="img" aria-label="Source" xmlns="https://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><title>Source</title><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg></a>
+  </h1>
+  <table>
+    <tr><th>Author</th><td>Kayode Odeyemi</td></tr>
+    
+      <tr><th>Discussions-To</th><td><a href="https://github.com/huntrecht/LIPs/issues/2">https://github.com/huntrecht/LIPs/issues/2</a></td></tr>
+    
+    <tr><th>Status</th><td>Draft
+    
+    </td></tr>
+    <tr><th>Type</th><td>Standards Track</td></tr>
+    
+      <tr><th>Category</th><td>Interface</td></tr>
+    
+    <tr><th>Created</th><td>2018-09-04</td></tr>
+    
+    
+    
+    
+  </table>
+
+  <h1 id="kyc-verification">KYC Verification</h1>
+
+<h2 id="abstract">Abstract</h2>
+<p>Data is essential to KYC. Backed by a network of data for good agents, a good KYC
+system should have good and complete data.</p>
+
+<h3 id="motivation">Motivation</h3>
+<p>A developed economy needs Credit. The backbone of a good credit system is
+quality KYC data.</p>
+
+<h3 id="use-cases--scenarios">Use Cases / Scenarios</h3>
+
+<h3 id="specification">Specification</h3>
+<p>The following Specification is based on Protobuf 3</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>message Kyc {
+    string userId = 1;
+    optional string bvn = 2; // only required if country is NG
+    string participantType = 3;
+    string address = 4;
+    bool verified = 5;
+    string profileImage = 6;
+    string identityId = 7;
+    string registeredIdBook = 8;
+    string fullnames = 9;
+    string country = 10;
+    }
+</code></pre></div></div>
+<h4 id="methods">Methods</h4>
+
+<p>create</p>
+
+<p>Returns <code class="highlighter-rouge">Profile</code> object</p>
+
+<p><code class="highlighter-rouge">rpc kycVerification(KycRequestParams) returns (Profile) {}</code></p>
+
+<h2 id="test-cases">Test Cases</h2>
+<p>Brokers provides the [brokers-specter] tool for checking compatibility with the Brokers specification.</p>
+
+<h2 id="copyright">Copyright</h2>
+<p>Copyright and related rights waived via
+<a href="https://creativecommons.org/publicdomain/zero/1.0/">CC0</a>.</p>
+
+
+</div>
+
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/"></data>
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">Brokers Design Proposals</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li class="p-name">Brokers Design Proposals</li></ul>
+      </div>
+
+      <div class="footer-col footer-col-2"><ul class="social-media-list"><li><a href="https://github.com/huntrecht"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#github"></use></svg> <span class="username">huntrecht</span></a></li><li><a href="https://www.twitter.com/huntrecht"><svg class="svg-icon"><use xlink:href="/assets/minima-social-icons.svg#twitter"></use></svg> <span class="username">huntrecht</span></a></li></ul>
+</div>
+
+      <div class="footer-col footer-col-3">
+        <p>Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+</body>
+
+</html>

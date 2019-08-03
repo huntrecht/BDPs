@@ -30,7 +30,7 @@ header_pages:
 markdown: kramdown
 theme: minima
 
-permalink: /:slug
+# permalink: /:slug
 
 defaults:
   -
@@ -39,17 +39,21 @@ defaults:
     values:
       layout: "lip"
 
-# plugins:
-  #- jekyll-feed
+plugins:
+  - jekyll-feed
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
 exclude:
   - Gemfile
-#   - Gemfile.lock
-#   - node_modules
-#   - vendor/bundle/
-#   - vendor/cache/
-#   - vendor/gems/
-#   - vendor/ruby/
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+  - Staticfile
+  - manifest.yml
+  - nginx
