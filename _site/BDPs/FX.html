@@ -3,18 +3,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Settlement Specification | Brokers Design Proposals</title>
+<title>Fx Specification | Brokers Design Proposals</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Settlement Specification" />
+<meta property="og:title" content="Fx Specification" />
 <meta name="author" content="Kayode Odeyemi" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
 <meta property="og:description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
-<link rel="canonical" href="http://localhost:4000/LIPs/Settlement.html" />
-<meta property="og:url" content="http://localhost:4000/LIPs/Settlement.html" />
+<link rel="canonical" href="http://localhost:4000/BDPs/FX.html" />
+<meta property="og:url" content="http://localhost:4000/BDPs/FX.html" />
 <meta property="og:site_name" content="Brokers Design Proposals" />
 <script type="application/ld+json">
-{"description":"Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards","@type":"WebPage","url":"http://localhost:4000/LIPs/Settlement.html","headline":"Settlement Specification","author":{"@type":"Person","name":"Kayode Odeyemi"},"@context":"https://schema.org"}</script>
+{"description":"Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards","@type":"WebPage","url":"http://localhost:4000/BDPs/FX.html","headline":"Fx Specification","author":{"@type":"Person","name":"Kayode Odeyemi"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Brokers Design Proposals" /></head>
 <body><header class="site-header" role="banner">
@@ -36,13 +36,13 @@
       <div class="wrapper">
         <div class="home">
   <h1 class="page-heading">
-    LIP 5: Settlement Specification
-    <a href="/blob/master/LIPs/Settlement.md"><svg role="img" aria-label="Source" xmlns="https://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><title>Source</title><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg></a>
+    BDP : Fx Specification
+    <a href="/blob/master/BDPs/FX.md"><svg role="img" aria-label="Source" xmlns="https://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><title>Source</title><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg></a>
   </h1>
   <table>
     <tr><th>Author</th><td>Kayode Odeyemi</td></tr>
     
-      <tr><th>Discussions-To</th><td><a href="https://github.com/huntrecht/LIPs/issues/5">https://github.com/huntrecht/LIPs/issues/5</a></td></tr>
+      <tr><th>Discussions-To</th><td><a href="https://github.com/huntrecht/LIPs/issues/2">https://github.com/huntrecht/LIPs/issues/2</a></td></tr>
     
     <tr><th>Status</th><td>Draft
     
@@ -58,7 +58,25 @@
     
   </table>
 
-  <h1 id="settlement">Settlement</h1>
+  <h1 id="fx">Fx</h1>
+
+<h2 id="abstract">Abstract</h2>
+
+<h3 id="motivation">Motivation</h3>
+
+<h3 id="use-cases--scenarios">Use Cases / Scenarios</h3>
+<ul>
+  <li>Company Issue a fund in USD, EUR, NGN, ZAR at certain price</li>
+  <li>Investors buy into the issued fund, specifying x quantity. Investor A can buy into USD fund and Investor B can buy into EUR fund etc
+Tokens owned by investors is persisted in investor own Wallet. For example, USD Wallet, EUR Wallet</li>
+  <li>Exchange rate is set daily by the players (Bank or BDC) on the network. If it’s not set, a mean value is used based on past exchange rates</li>
+  <li>End user A make a request to transfer USD of x qty in exchange for NGN</li>
+  <li>End user A must own USD in his wallet before it can be exchanged</li>
+  <li>USD at qty x is removed from User A Wallet and transferred to USD fund of Company A</li>
+  <li>NGN at qty x is deducted from NGN fund and transferred to User A</li>
+  <li>Settlement occurs immediately. That is, all parties get paid</li>
+</ul>
+
 
 
 </div>

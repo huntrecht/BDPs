@@ -35,9 +35,9 @@ theme: minima
 defaults:
   -
     scope: 
-      path: "LIPs"
+      path: "BDPs"
     values:
-      layout: "lip"
+      layout: "bdp"
 
 plugins:
   - jekyll-feed

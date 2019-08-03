@@ -1,24 +1,24 @@
 <style type="text/css">
-  .liptable .title {
+  .bdptable .title {
     width: 67%;
   }
 
-  .liptable .author {
+  .bdptable .author {
     width: 33%;
   }
 </style>
 {% for status in site.data.statuses %}
-  {% assign lips = include.lips|where:"status",status|sort:"lip" %}
-  {% assign count = lips|size %}
+  {% assign bdps = include.bdps|where:"status",status|sort:"bdp" %}
+  {% assign count = bdps|size %}
   {% if count > 0 %}
     <h2>{{status}}</h2>
-    <table class="liptable">
+    <table class="bdptable">
       <thead>
-        <tr><th class="lipnum">Number</th><th class="title">Title</th><th class="author">Author</th></tr>
+        <tr><th class="bdpnum">Number</th><th class="title">Title</th><th class="author">Author</th></tr>
       </thead>
-      {% for page in lips %}
+      {% for page in bdps %}
         <tr>
-          <td class="lipnum"><a href="{{page.url|relative_url}}">{{page.lip|xml_escape}}</a></td>
+          <td class="bdpnum"><a href="{{page.url|relative_url}}">{{page.bdp|xml_escape}}</a></td>
           <td class="title">{{page.title|xml_escape}}</td>
           <td class="author">{% include authorlist.html authors=page.author %}</td>
         </tr>
