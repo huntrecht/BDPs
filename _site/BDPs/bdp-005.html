@@ -58,7 +58,7 @@
     
   </table>
 
-  <h1 id="imto">IMTO</h1>
+  <h1 id="money-transfer">Money Transfer</h1>
 
 <h2 id="abstract">Abstract</h2>
 <p>Send money between people, home and abroad</p>
@@ -67,36 +67,73 @@
 
 <h3 id="motivation">Motivation</h3>
 
-<p>Send money. Local and international</p>
+<p>Send money. Local and international. Point-to-Point connection won’t cut it. A
+cross-border money transfer solution must be efficient and fault tolerant with
+zero transaction loss or failure.</p>
 
 <h3 id="use-cases--scenarios">Use Cases / Scenarios</h3>
 <ul>
+  <li>Both sending and receiving parties are known and verified parties. They must
+  have completed KYC process</li>
   <li>End user is able to select designated country</li>
   <li>End user is able to select the recipient</li>
   <li>End user enters transfer amount</li>
-  <li>Silent FX conversation occurs if mode is international. Please see x if you want to be FX conversion provider</li>
+  <li>Silent FX conversation occurs if mode is international.
+    <ul>
+      <li>For example, an exchange rate quote of EUR/GBP = 1.2225 means that 1 GBP
+  costs 1.2225 EUR. Destination account provider is usually responsibile
+  for this.</li>
+    </ul>
+  </li>
   <li>validate beneficiary. This should support query by email, phone number and
   full names</li>
   <li>system validates transfer limit</li>
+  <li>If Bank fails queue transaction and retry</li>
 </ul>
 
 <h3 id="specification">Specification</h3>
 
 <p>The following specification is based on Protobuf 3</p>
 
-<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">message</span> <span class="nx">Transfer</span> <span class="p">{</span>
-    <span class="c1">// The recipient. </span>
+<div class="language-js highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">message</span> <span class="nx">TransferTransaction</span> <span class="p">{</span>
+    <span class="nx">string</span> <span class="nx">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// Transfer</span>
+    <span class="nx">string</span> <span class="nx">type</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="nx">double</span> <span class="nx">amount</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="c1">// The user who made the transaction</span>
+    <span class="nx">string</span> <span class="nx">userId</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="c1">// The user who received the transaction</span>
+    <span class="nx">string</span> <span class="nx">recipient</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+    <span class="nx">bool</span> <span class="nx">status</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+    <span class="c1">// Transaction processor</span>
+    <span class="nx">string</span> <span class="nx">dealer</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="nx">string</span> <span class="nx">desc</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="nx">string</span> <span class="nx">currency</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="nx">double</span> <span class="nx">fxQuote</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+    <span class="nx">string</span> <span class="nx">mode</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+    <span class="c1">// ISO 3166-1 country format</span>
+    <span class="nx">string</span> <span class="nx">country</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+    <span class="nx">int32</span> <span class="nx">createdDate</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">message</span> <span class="nx">Transfer</span> <span class="p">{</span>
+    <span class="c1">// The recipient with a validated KYC </span>
     <span class="nx">required</span> <span class="nx">string</span> <span class="nx">to</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="c1">// The source. Card, BankAccount, Wallet</span>
-    <span class="nx">requied</span> <span class="nx">string</span> <span class="k">from</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
-    <span class="c1">// The currency symbol</span>
-    <span class="nx">required</span> <span class="nx">string</span> <span class="nx">symbol</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="c1">// The source with a validated KYC. Card, BankAccount, Wallet</span>
+    <span class="nx">required</span> <span class="nx">SourceAccount</span> <span class="k">from</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// The currency pair</span>
+    <span class="nx">required</span> <span class="nx">string</span> <span class="nx">pair</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
     <span class="c1">// Amount to be transferred</span>
     <span class="nx">required</span> <span class="nx">int32</span> <span class="nx">quantity</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-    <span class="c1">// ISO x country format</span>
+    <span class="c1">// ISO 3166-1 country format</span>
     <span class="nx">required</span> <span class="nx">string</span> <span class="nx">country</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
     <span class="c1">// Transfer description</span>
     <span class="nx">required</span> <span class="nx">string</span> <span class="nx">desc</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>
+    <span class="c1">// exchange rate quote.</span>
+    <span class="nx">optional</span> <span class="nx">double</span> <span class="nx">fxQuote</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+    <span class="c1">// local or international</span>
+    <span class="nx">required</span> <span class="nx">string</span> <span class="nx">mode</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="nx">int32</span> <span class="nx">createdDate</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">message</span> <span class="nx">SourceAccount</span> <span class="p">{</span>
@@ -105,16 +142,17 @@
     <span class="nx">optional</span> <span class="nx">Card</span> <span class="nx">card</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
     <span class="nx">optional</span> <span class="nx">BankAccount</span> <span class="nx">bank</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
     <span class="nx">optional</span> <span class="nx">Wallet</span> <span class="nx">wallet</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
-    <span class="nx">optional</span> <span class="nx">Qr</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">message</span> <span class="nx">Card</span> <span class="p">{</span>
     <span class="nx">string</span> <span class="nx">name</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="nx">string</span> <span class="nx">exp</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// PCI-DSS compatibility. Only last 4 digits required</span>
     <span class="nx">string</span> <span class="nx">pan</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">message</span> <span class="nx">Wallet</span> <span class="p">{</span>
+    <span class="c1">// A validated identity id</span>
     <span class="nx">string</span> <span class="nx">userId</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="nx">string</span> <span class="nx">currency</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
     <span class="nx">double</span> <span class="nx">balance</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
@@ -125,12 +163,25 @@
     <span class="nx">string</span> <span class="nx">accountName</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="nx">string</span> <span class="nx">accountNumber</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
     <span class="nx">string</span> <span class="nx">country</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="c1">// A validated identity id</span>
     <span class="nx">optional</span> <span class="nx">int32</span> <span class="nx">bvn</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">message</span> <span class="nx">CurrencyPair</span> <span class="p">{</span>
+   <span class="nx">required</span> <span class="nx">string</span> <span class="nx">pair</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+<span class="p">}</span>
+
+<span class="nx">message</span> <span class="nx">ExchangeRate</span> <span class="p">{</span>
+    <span class="nx">required</span> <span class="nx">double</span> <span class="nx">quote</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="nx">message</span> <span class="nx">TransferResponse</span> <span class="p">{</span>
     <span class="nx">string</span> <span class="nx">status</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="nx">string</span> <span class="nx">message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">message</span> <span class="nx">LimitResponse</span> <span class="p">{</span>
+    <span class="nx">required</span> <span class="nx">bool</span> <span class="nx">valid</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div></div>
 
@@ -140,7 +191,7 @@
 
 <p>Decode the source of funds</p>
 
-<p>Returns <code class="highlighter-rouge">SourceDetails</code> object</p>
+<p>Returns <code class="highlighter-rouge">SourceAccount</code> object</p>
 
 <p><code class="highlighter-rouge">rpc transferFrom(SourceAccount) returns (SourceAccount) {}</code></p>
 
@@ -151,6 +202,14 @@
 <p>Returns <code class="highlighter-rouge">BankAccount</code> object</p>
 
 <p><code class="highlighter-rouge">rpc transferTo(BankAccount) returns (BankAccount) {}</code></p>
+
+<h4 id="quotefxrate">quoteFxRate</h4>
+
+<p>Perform direct currency exchange rate</p>
+
+<p>Returns <code class="highlighter-rouge">ExchangeRate</code> object</p>
+
+<p><code class="highlighter-rouge">rpc quoteFxRate(CurrencyPair) returns (ExchangeRate) {}</code></p>
 
 <h4 id="transfer">transfer</h4>
 
@@ -176,10 +235,25 @@
 
 <p><code class="highlighter-rouge">rpc list() returns (stream Transfer)</code></p>
 
+<h4 id="querytransaction">queryTransaction</h4>
+
+<p>Query a transaction</p>
+
+<p>Returns status of a transaction</p>
+
+<p><code class="highlighter-rouge">rpc query(TransferTransaction) returns (TransferTransaction)</code></p>
+
+<h4 id="validatelimit">validateLimit</h4>
+
+<p>Validate a transfer limit</p>
+
+<p>Returns <code class="highlighter-rouge">LimitResponse</code> object</p>
+
+<p><code class="highlighter-rouge">rpc validateLimit(Transfer) returns (LimitResponse)</code></p>
+
 <h3 id="implementation">Implementation</h3>
 <ul>
-  <li>PaystackIMTO</li>
-  <li>WaveIMTO</li>
+  <li>BrokersIMTO</li>
 </ul>
 
 <h2 id="test-cases">Test Cases</h2>
