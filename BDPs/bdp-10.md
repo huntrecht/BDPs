@@ -1,5 +1,5 @@
 ---
-bdp: 007
+bdp: 10
 title: Tokens
 author: Kayode Odeyemi
 discussions-to: https://github.com/huntrecht/BDPs/issues/7
@@ -26,6 +26,13 @@ created: 2018-09-04
 - Investors decide to/against reinvest return
 - Investors stake rises/decline
 - Token valuation rises/decline
+
+## User Access
+Permission | Description | Role
+-----------|-------------|------------
+                          Investor
+                          User
+                          Admin
 
 ## Specification
 ```
