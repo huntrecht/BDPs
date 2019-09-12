@@ -9,6 +9,7 @@ category: Interface
 created: 2018-09-04
 ---
 # Tokens
+These are Digital Assets.
 
 ## Notable Security Token Offerings issued and supported by Brokers
 - Consumer loans security token
