@@ -30,9 +30,9 @@ created: 2018-09-04
 ## User Access
 Permission | Description | Role
 -----------|-------------|------------
-                          Investor
-                          User
-                          Admin
+N/A        |N/A          |Investor
+N/A        |N/A          |User
+N/A        |N/A          |Admin
 
 ## Specification
 ```
@@ -63,6 +63,11 @@ message AddTokenParams {
     string quantity = 2; 
     string owner = 3;
     string orgid = 4;
+}
+
+message Valuation {
+    string txid = 1;
+    double price = 2;
 }
 ```
 ### Methods
@@ -98,6 +103,22 @@ Redeem a token
 Returns a `FundResponse`
 
 `rpc redeemFund(RedeemTokenParams) returns (FundResponse) {}`
+
+#### addValuation
+
+Add new token valuation
+
+Returns a `Valuation`
+
+`rpc addValuation(Valuation) returns (Valuation) {}`
+
+#### listValuation
+
+List token valuations
+
+Returns a list of Valuation.
+
+`rpc listValuation() returns (stream Valuation) {}`
 
 ## Copyright
 Copyright and related rights waived via
