@@ -3,17 +3,18 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.6.1 -->
-<title>Core | Brokers Design Proposals</title>
+<title>Data Management Specification | Brokers Design Proposals</title>
 <meta name="generator" content="Jekyll v3.8.6" />
-<meta property="og:title" content="Core" />
+<meta property="og:title" content="Data Management Specification" />
+<meta name="author" content="Kayode Odeyemi" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
 <meta property="og:description" content="Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards" />
-<link rel="canonical" href="http://localhost:4000/core.html" />
-<meta property="og:url" content="http://localhost:4000/core.html" />
+<link rel="canonical" href="http://localhost:4000/BDPs/bdp-008.html" />
+<meta property="og:url" content="http://localhost:4000/BDPs/bdp-008.html" />
 <meta property="og:site_name" content="Brokers Design Proposals" />
 <script type="application/ld+json">
-{"description":"Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards","@type":"WebPage","url":"http://localhost:4000/core.html","headline":"Core","@context":"https://schema.org"}</script>
+{"description":"Brokers Design Proposals describe standards for Brokers platform, including core protocol specifications, client APIs and contract standards","@type":"WebPage","url":"http://localhost:4000/BDPs/bdp-008.html","headline":"Data Management Specification","author":{"@type":"Person","name":"Kayode Odeyemi"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Brokers Design Proposals" /></head>
 <body><header class="site-header" role="banner">
@@ -33,101 +34,57 @@
 </header>
 <main class="page-content" aria-label="Content">
       <div class="wrapper">
-        <article class="post">
-
-  <header class="post-header">
-    <h1 class="post-title">Core</h1>
-  </header>
-
-  <div class="post-content">
+        <div class="home">
+  <h1 class="page-heading">
+    BDP 008: Data Management Specification
+    <a href="/blob/master/BDPs/bdp-008.md"><svg role="img" aria-label="Source" xmlns="https://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><title>Source</title><path fill-rule="evenodd" d="M9.5 3L8 4.5 11.5 8 8 11.5 9.5 13 14 8 9.5 3zm-5 0L0 8l4.5 5L6 11.5 2.5 8 6 4.5 4.5 3z"/></svg></a>
+  </h1>
+  <table>
+    <tr><th>Author</th><td>Kayode Odeyemi</td></tr>
     
-<style type="text/css">
-  .bdptable .title {
-    width: 67%;
-  }
+      <tr><th>Discussions-To</th><td><a href="https://github.com/huntrecht/BDPs/issues/8">https://github.com/huntrecht/BDPs/issues/8</a></td></tr>
+    
+    <tr><th>Status</th><td>Draft
+    
+    </td></tr>
+    <tr><th>Type</th><td>Standards Track</td></tr>
+    
+      <tr><th>Category</th><td>Interface</td></tr>
+    
+    <tr><th>Created</th><td>2018-09-04</td></tr>
+    
+    
+    
+    
+  </table>
 
-  .bdptable .author {
-    width: 33%;
-  }
-</style>
+  <h1 id="data-management">Data Management</h1>
 
-  
-  
-  
+<h3 id="abstract">Abstract</h3>
+<p>Data Management is important in a digital economy. The Data Management x helps
+to ensure 360 degrees Data Governance, Privacy and prevent unauthorized use.</p>
 
-  
-  
-  
-    <h2>Draft</h2>
-    <table class="bdptable">
-      <thead>
-        <tr><th class="bdpnum">Number</th><th class="title">Title</th><th class="author">Author</th></tr>
-      </thead>
-      
-        <tr>
-          <td class="bdpnum"><a href="/BDPs/bdp-001.html">1</a></td>
-          <td class="title">Resilient Service Protocol Specification</td>
-          <td class="author">Kayode Odeyemi</td>
-        </tr>
-      
-        <tr>
-          <td class="bdpnum"><a href="/BDPs/bdp-100.html">100</a></td>
-          <td class="title">Transaction Specification</td>
-          <td class="author">Kayode Odeyemi</td>
-        </tr>
-      
-        <tr>
-          <td class="bdpnum"><a href="/BDPs/bdp-101.html">101</a></td>
-          <td class="title">Digital Authorization</td>
-          <td class="author">Kayode Odeyemi</td>
-        </tr>
-      
-        <tr>
-          <td class="bdpnum"><a href="/BDPs/bdp-102.html">102</a></td>
-          <td class="title">Identity Management</td>
-          <td class="author">Kayode Odeyemi</td>
-        </tr>
-      
-        <tr>
-          <td class="bdpnum"><a href="/BDPs/bdp-103.html">103</a></td>
-          <td class="title">Organizations on a Chain</td>
-          <td class="author">Kayode Odeyemi</td>
-        </tr>
-      
-    </table>
-  
+<p>Data streams real-time feed.</p>
 
-  
-  
-  
+<h3 id="motivation">Motivation</h3>
+<ul>
+  <li>GDPR</li>
+  <li>Identity Management</li>
+  <li>Data security</li>
+  <li>Data Governance</li>
+  <li>Data Audit: 360 degrees audit system</li>
+  <li>Intelligence networks (market insights across all industries)</li>
+</ul>
 
-  
-  
-  
+<h2 id="nlu-ner-for-data-classification-and-categorization">NLU NER for Data Classification and Categorization</h2>
 
-  
-  
-  
+<h2 id="data-governance">Data Governance</h2>
 
-  
-  
-  
-
-  
-  
-  
-
-  
-  
-  
+<h2 id="data-audit">Data Audit</h2>
 
 
+</div>
 
-
-
-  </div>
-
-</article>
 
       </div>
     </main><footer class="site-footer h-card">

@@ -8,7 +8,7 @@
   }
 </style>
 {% for status in site.data.statuses %}
-  {% assign bdps = include.bdps|where:"status",status|sort:"bdp" %}
+  {% assign bdps = include.bdps|where:"status",status %}
   {% assign count = bdps|size %}
   {% if count > 0 %}
     <h2>{{status}}</h2>

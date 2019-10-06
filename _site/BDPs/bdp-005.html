@@ -65,11 +65,14 @@
 
 <p>Send money. Local and international</p>
 
-<h3 id="motivation">Motivation</h3>
+<h3 id="motivation-and-requirements">Motivation and Requirements</h3>
 
 <p>Send money. Local and international. Point-to-Point connection won’t cut it. A
 cross-border money transfer solution must be efficient and fault tolerant with
 zero transaction loss or failure.</p>
+
+<p>IMTO fault tolerance is provided by <a href="BDPs/bdp-001.md">BDP-1</a>,
+Resilient Service Protocol (RSP).</p>
 
 <h3 id="use-cases--scenarios">Use Cases / Scenarios</h3>
 <ul>
@@ -78,6 +81,7 @@ zero transaction loss or failure.</p>
   <li>End user is able to select designated country</li>
   <li>End user is able to select the recipient</li>
   <li>End user enters transfer amount</li>
+  <li>Should support USD/NGN, GBP/NGN, CAD/NGN FX trades</li>
   <li>Silent FX conversation occurs if mode is international.
     <ul>
       <li>For example, an exchange rate quote of EUR/GBP = 1.2225 means that 1 GBP
@@ -88,6 +92,7 @@ zero transaction loss or failure.</p>
   <li>validate beneficiary. This should support query by email, phone number and
   full names</li>
   <li>system validates transfer limit</li>
+  <li>Transaction processing and completion should be less than 20s</li>
   <li>If Bank fails queue transaction and retry</li>
 </ul>
 
@@ -175,6 +180,16 @@ zero transaction loss or failure.</p>
     <span class="nx">required</span> <span class="nx">double</span> <span class="nx">quote</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
 <span class="p">}</span>
 
+<span class="c1">// A Wallet Withdrawal function</span>
+<span class="nx">message</span> <span class="nx">WalletTransfer</span> <span class="p">{</span>
+    <span class="c1">// source wallet identifier</span>
+    <span class="nx">string</span> <span class="nx">id</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="c1">// BankAccount to transfer to</span>
+    <span class="nx">BankAccount</span> <span class="nx">bankAccount</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="c1">// destination wallet identifier</span>
+    <span class="nx">string</span> <span class="nx">to</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+
 <span class="nx">message</span> <span class="nx">TransferResponse</span> <span class="p">{</span>
     <span class="nx">string</span> <span class="nx">status</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
     <span class="nx">string</span> <span class="nx">message</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
@@ -250,6 +265,14 @@ zero transaction loss or failure.</p>
 <p>Returns <code class="highlighter-rouge">LimitResponse</code> object</p>
 
 <p><code class="highlighter-rouge">rpc validateLimit(Transfer) returns (LimitResponse)</code></p>
+
+<h4 id="savetobank">saveToBank</h4>
+
+<p>Save from Wallet to BankAccount</p>
+
+<p>Returns <code class="highlighter-rouge">Wallet</code> with new balance details</p>
+
+<p><code class="highlighter-rouge">rpc saveToBank(WalletTransfer) returns (Wallet)</code></p>
 
 <h3 id="implementation">Implementation</h3>
 <ul>
